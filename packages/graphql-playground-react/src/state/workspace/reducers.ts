@@ -137,6 +137,9 @@ export const rootReducer = (state = new RootState(), action) => {
 }
 
 function makeStateFromTabs(tabs: Tab[]): RootState {
+  if (tabs.length === 0) {
+    return new RootState()
+  }
   const endpoint = tabs[0].endpoint
   const tabSessions = OrderedMap(
     tabs.map(sessionFromTab).reduce(
